@@ -13,6 +13,7 @@ const navItems = [
 export const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpened, setIsMeuOpened] = useState(true)
+    
 
     useEffect(() => {
         const handleScroll = () => {
@@ -21,8 +22,9 @@ export const Navbar = () => {
 
         window.addEventListener("scroll", handleScroll)
         return () => window.removeEventListener("scroll", handleScroll)
-    }, [])
-    return <>
+    }, []);
+    
+    return (<>
     <nav className={cn("fixed w-full z-40 transition-all duration-300",
         isScrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-xs" : "py-5"
     )}>
@@ -39,7 +41,7 @@ export const Navbar = () => {
             {/* {desktop nav} */}
             <div className="hidden md:flex space-x-8">
                 {navItems.map((item, key) => (
-                    <a key={key} href={item.key}
+                    <a key={key} href={item.href}
                     className="text-foreground/80 hover:text-primary transition-colors duration-300">
                         {item.name}
                     </a>
@@ -70,5 +72,5 @@ export const Navbar = () => {
             </div>
         </div>
     </nav>
-    </>
+    </>)
 }
